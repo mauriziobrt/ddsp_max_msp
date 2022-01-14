@@ -22,11 +22,6 @@
 
 	<objarglist>
 
-		<objarg name='greeting' optional='1' type='symbol'>
-			<digest>Initial value for the greeting attribute</digest>
-			<description>Initial value for the greeting attribute. </description>
-		</objarg>
-
 	</objarglist>
 
 
@@ -39,6 +34,11 @@
 			<description>Post the greeting. </description>
 		</method>
 
+		<method name='load'>
+			<digest></digest>
+			<description></description>
+		</method>
+
 	</methodlist>
 
 
@@ -46,20 +46,13 @@
 
 	<attributelist>
 
-		<attribute name='greeting' get='1' set='1' type='symbol' size='1' >
-			<digest>Greeting to be posted</digest>
-			<description>Greeting to be posted. The greeting will be posted to the Max console when a bang is received. </description>
-		</attribute>
-
 	</attributelist>
 
 
 	<!--RELATED-->
 
 	<seealsolist>
-		<seealso name='print' />
-		<seealso name='jit.print' />
-		<seealso name='dict.print' />
+		<seealso name='panner~' />
 	</seealsolist>
 
 
