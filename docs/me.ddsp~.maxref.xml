@@ -30,8 +30,8 @@
 	<methodlist>
 
 		<method name='bang'>
-			<digest>Post the greeting</digest>
-			<description>Post the greeting. </description>
+			<digest>Test if Torch is working</digest>
+			<description>Test if Torch is working. </description>
 		</method>
 
 		<method name='load'>
@@ -52,7 +52,7 @@
 	<!--RELATED-->
 
 	<seealsolist>
-		<seealso name='panner~' />
+		<seealso name='funiculìfuniculà~' />
 	</seealsolist>
 
 
