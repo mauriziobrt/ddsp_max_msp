@@ -75,6 +75,8 @@ void DDSPModel::perform(float *pitch, float *loudness, float *out_buffer, int bu
 
         //forse devo sapere la size di out per capire dove inizia e finisce
         //smette di funzionare appena riceve i valor di pitch e loudness.
+        
+        
         memcpy(out_buffer, out, buffer_size * sizeof(float));
         //std::copy(out, buffer_size + out , out_buffer);
         //std::cout << "Adesso l'output buffer è uguale a: " << *out_buffer <<std::endl;

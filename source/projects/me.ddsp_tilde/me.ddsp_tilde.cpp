@@ -12,12 +12,12 @@
 using namespace c74::min;
 
 
-class me_ddsp_tilde : public object<me_ddsp_tilde>, public sample_operator<2,1> {
+class me_ddsp_tilde : public object<me_ddsp_tilde>, public vector_operator<> {
 public:
     MIN_DESCRIPTION	{"DDSP Wrapper for MAX/MSP"};
-    MIN_TAGS		{"utilities"};
+    MIN_TAGS		{"audio, deep learning, ai"};
     MIN_AUTHOR		{"Maurizio Berta"};
-    MIN_RELATED		{"funiculìfuniculà~"};
+    //MIN_RELATED		{"funiculìfuniculà~"};
     
     inlet<>  in1	{ this, "(signal) Input 1", "frequency" };
     inlet<>  in2 { this, "(signal) Input 2", "loudness"};
@@ -77,23 +77,34 @@ public:
             
 
     // Questo viene eseguito in continuazione a dsp acceso
-    sample operator()(sample in1, sample in2){
+    void operator()(audio_bundle input, audio_bundle output){
             
-            m_pitch_buffer[m_head] = in1;
-            m_loudness_buffer[m_head] = in2;
-            
-//            auto* in1 = input.samples(0);
-//            //cout << "Value inside in1: "<< *in1 << endl;
-//            auto* in2 = input.samples(1);
-//            //cout << "Value inside in2: "<< *in2 << endl;
-//            auto* out = output.samples(0);
+//            m_pitch_buffer[m_head] = in1;
+//            m_loudness_buffer[m_head] = in2;
+
+            auto* in1 = input.samples(0);
+            //cout << "Value inside in1: "<< *in1 << endl;
+            auto* in2 = input.samples(1);
+            //cout << "Value inside in2: "<< *in2 << endl;
+            auto* out = output.samples(0);
                        
+            
+            
+            
             //semplice +~
 //            for (auto i = 0; i < input.frame_count(); i++){
 //            out[i] = in1[i] + in2[i];
 //            }
 
-            int n = vector_size();
+            //ogni
+            int n = input.frame_count();
+            
+            for (int i = 0; i < n; i++) {
+                m_pitch_buffer[m_head + i] = (float) in1[i];
+                m_loudness_buffer[m_head + i] = (float) in2[i];
+                out[i] = m_out_buffer[m_head + i];
+            }
+            
             
             //cout << "Il valore di n è: " << n << "\n"<< endl;
             
@@ -101,7 +112,7 @@ public:
 
             // primo step: copio nei buffer il valore attuale di pitch e loudness
             
-            //std::copy(in1, in1 + n, m_pitch_buffer);
+//            std::copy(in1, in1 + n, m_pitch_buffer);
             
             //il problema è che qua usiamo i double mentre in pd usiamo i float
             
@@ -123,7 +134,6 @@ public:
 //            memcpy(out, m_out_buffer + m_head, n * sizeof(double));
             //cout << "Ma l'out che contiene all'inizio? .. " << *m_out_buffer << "  Ah ok..."<< endl;
 
-            
             m_head += n;
                         
             // i valori che arrivano al modello sono sballati, all'ingresso qua sono giusti, poi si sballano quando vengono copiati nel buffer.
@@ -148,7 +158,7 @@ public:
             //compute thread prende i 2 buffer di ingresso applica il processo e poi copia dentro m_out_buffer.
                 m_head = m_head % (2* B_SIZE);
             }
-            return m_out_buffer[m_head];
+            //return m_out_buffer[m_head];
     }
     private:
         //double m_one_over_samplerate {1.0};
