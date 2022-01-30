@@ -24,6 +24,11 @@
 
 	<objarglist>
 
+		<objarg name='model path' optional='1' type='symbol'>
+			<digest>Absolute path to the pretrained model</digest>
+			<description>Absolute path to the pretrained model. </description>
+		</objarg>
+
 	</objarglist>
 
 

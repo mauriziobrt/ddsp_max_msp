@@ -10,6 +10,8 @@
 #include <vector>
 #include <stdlib.h>
 
+//add choice cpu or gpu, if cuda is available 
+
 DDSPModel::DDSPModel() : m_loaded(0)
 {
     at::init_num_threads();
