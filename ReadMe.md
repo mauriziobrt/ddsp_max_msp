@@ -54,3 +54,9 @@ In max create a message box and use load path_to_model
 |   violin   |   true   |  `sigmund~`   |     48kHz     | [download](https://nubo.ircam.fr/index.php/s/f6XB4Kp9onxiNwZ/download) |
 <!-- |   violin   |   true   |    `crepe`    |     48kHz     | [download](https://nubo.ircam.fr/index.php/s/LzTsYr8zdqHYdMy/download) | -->
 <!-- |   violin   |  false   |    `crepe`    |     48kHz     | [download](https://nubo.ircam.fr/index.php/s/LMFo3eAb3C5by23/download) | -->
+
+
+# How does it work?
+
+To use the object you need to provide in the left input the frequency of the input sound and on the right input the loudness.
+The input audio needs to be preprocessed by adding a click on it's transients, making it more recognizable for the model to reconstruct.
