@@ -31,9 +31,6 @@ public:
     };
     
     ~me_ddsp_tilde(){
-        if (compute_thread) {
-            compute_thread->join();
-        }
     }
     
     argument<symbol> path_arg{this, "model path",

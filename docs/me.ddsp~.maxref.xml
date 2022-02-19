@@ -36,11 +36,6 @@
 
 	<methodlist>
 
-		<method name='bang'>
-			<digest>Test if Torch is working</digest>
-			<description>Test if Torch is working. </description>
-		</method>
-
 		<method name='load'>
 			<digest></digest>
 			<description></description>
