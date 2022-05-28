@@ -9,7 +9,7 @@
 
 #define B_SIZE 1024
 
-// add a switch cpu
+// add a switch cpu/gpu
 
 using namespace c74::min;
 
@@ -40,8 +40,7 @@ public:
         MIN_FUNCTION {
 
             string path = args[0];
-            string search_path = path; //"/Volumes/MacintoshHD/Users/LudovicoBerta/Downloads/natale_2021/ddsp_pretrained_saxophone/ddsp_demo_pretrained.ts";
-            
+            string search_path = path;
             int status = model->load(search_path);
             cout << status << endl;
             if (!status)
@@ -56,8 +55,6 @@ public:
     }
     };
     
-            // respond to the bang message to do something
-
     void thread_perform(float *pitch, float *loudness, float *out_buffer, int buffer_size){
             model->perform(pitch, loudness, out_buffer, buffer_size);
     }

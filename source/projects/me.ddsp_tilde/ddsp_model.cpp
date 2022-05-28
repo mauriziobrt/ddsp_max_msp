@@ -12,6 +12,23 @@
 
 //add choice cpu or gpu, if cuda is available 
 
+
+//ora introdurre un messaggio che permetta di scegliere con una funzione loadDevice? oppure va bene così? funziona? forse meglio se windows allora cerca di usare accelerazione CUDA e se Mac usare metal, quindi usare di base la GPU. E se nè cuda nè metal sono disponibili?
+//c10::DeviceType getDevice(){
+//    c10::DeviceType device;
+//    device = torch::kMetal;
+////    if (torch::cuda::is_available()) {
+////        device = torch::kCUDA;
+//////        std::cout<< "Using CUDA acceleration" <<std::endl;
+////
+////    } else {
+////        device = torch::kMetal;
+//////        std::cout<< "Using Metal acceleration" <<std::endl;
+////    };
+//   
+//    return device;
+//}
+
 DDSPModel::DDSPModel() : m_loaded(0)
 {
     at::init_num_threads();
@@ -25,7 +42,7 @@ int DDSPModel::load(std::string path)
         m_scripted_model = torch::jit::load(path);
         // eval activates the inference of the model
         m_scripted_model.eval();
-        // set the model to work with cpu
+        // set the model to work with gpu
         m_scripted_model.to(DEVICE);
         m_loaded = 1;
         return 0;
@@ -84,7 +101,7 @@ void DDSPModel::perform(float *pitch, float *loudness, float *out_buffer, int bu
         //std::cout << "Adesso l'output buffer è uguale a: " << *out_buffer <<std::endl;
     }
     else {
-        std::cout << "Model not loaded. " << std::endl;
+        std::cout << "Model not loaded." << std::endl;
     }
 }
 

@@ -11,7 +11,9 @@
 #include <string>
 
 #define DEVICE torch::kCPU
+//in pratica questo define ritorna cosa?? 
 #define CPU torch::kCPU
+//#define GPU torch::kCUDA
 
 class DDSPModel
 {
